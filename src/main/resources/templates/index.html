@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Houser Review</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<div class="card">
+
+	<a href="https://houserr.in" target="_blank">
+	    <img src="/images/houser.png"
+	         class="logo"
+	         alt="Houser Logo">
+	</a>
+
+
+    <h1>Share Your Review</h1>
+    <p class="subtitle">Copy a ready review and post it on Google</p>
+
+    <div class="steps">
+        <div>1. Copy review</div>
+        <div>2. Open Google</div>
+        <div>3. Paste & submit</div>
+    </div>
+
+    <textarea id="reviewBox"></textarea>
+
+    <button class="copy" onclick="copyReview()">📋 Copy Review</button>
+
+	<button class="review" onclick="copyAndOpenGoogleReview()">
+	    ⭐ Copy & Open Google Review
+	</button>
+	
+
+    <button class="generate" onclick="generateReview()">🔄 Try Another Review</button>
+
+	<a href="https://houserr.in" target="_blank">
+	    <button class="website">
+	        🏠 Visit Houser Website
+	    </button>
+	</a>
+
+    <p id="toast">Review copied successfully!</p>
+
+</div>
+
+
+<script>
+
+
+	async function generateReview() {
+	    const response = await fetch("/api/review");
+	    const review = await response.text();
+	    document.getElementById("reviewBox").value = review;
+	}
+
+function copyReview() {
+    const reviewBox = document.getElementById("reviewBox");
+    navigator.clipboard.writeText(reviewBox.value);
+
+    const toast = document.getElementById("toast");
+    toast.style.display = "block";
+
+    setTimeout(() => {
+        toast.style.display = "none";
+    }, 1800);
+}
+
+
+
+window.onload = function () {
+    generateReview();
+};
+
+
+
+function copyAndOpenGoogleReview() {
+    const reviewBox = document.getElementById("reviewBox");
+
+    navigator.clipboard.writeText(reviewBox.value);
+
+    window.open(
+        "https://g.page/r/CeGvCsG32CLGEBM/review",
+        "_blank"
+    );
+}
+</script>
+
+</body>
+</html>
