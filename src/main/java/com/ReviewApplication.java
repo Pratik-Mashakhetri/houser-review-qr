@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.util.QRGenerator;
 
 @SpringBootApplication
-public class ReviewApplication {
+public class ReviewApplication {  
 
 	public static void main(String[] args) {
 		SpringApplication.run(ReviewApplication.class, args);

@@ -55,17 +55,21 @@
 	    document.getElementById("reviewBox").value = review;
 	}
 
-function copyReview() {
-    const reviewBox = document.getElementById("reviewBox");
-    navigator.clipboard.writeText(reviewBox.value);
+	function copyReview() {
+	    const reviewBox = document.getElementById("reviewBox");
 
-    const toast = document.getElementById("toast");
-    toast.style.display = "block";
+	    reviewBox.select();
+	    reviewBox.setSelectionRange(0, 99999);
 
-    setTimeout(() => {
-        toast.style.display = "none";
-    }, 1800);
-}
+	    document.execCommand("copy");
+
+	    const toast = document.getElementById("toast");
+	    toast.style.display = "block";
+
+	    setTimeout(() => {
+	        toast.style.display = "none";
+	    }, 1800);
+	}
 
 
 
@@ -74,11 +78,13 @@ window.onload = function () {
 };
 
 
-
 function copyAndOpenGoogleReview() {
     const reviewBox = document.getElementById("reviewBox");
 
-    navigator.clipboard.writeText(reviewBox.value);
+    reviewBox.select();
+    reviewBox.setSelectionRange(0, 99999);
+
+    document.execCommand("copy");
 
     window.open(
         "https://g.page/r/CeGvCsG32CLGEBM/review",
