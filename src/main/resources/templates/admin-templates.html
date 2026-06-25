@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Review Templates</title>
+</head>
+<body>
+
+<h1>Review Templates</h1>
+
+<a href="/admin/dashboard">Dashboard</a> |
+<a href="/admin/logout">Logout</a>
+
+<hr>
+
+<form method="post" action="/admin/templates/add">
+    <input type="text" name="category" placeholder="Category" required>
+    <br><br>
+
+    <textarea name="review" placeholder="Enter review template" required></textarea>
+    <br><br>
+
+    <button type="submit">Add Template</button>
+</form>
+
+<hr>
+
+<table border="1" cellpadding="10">
+    <tr>
+        <th>ID</th>
+        <th>Category</th>
+        <th>Review</th>
+        <th>Action</th>
+    </tr>
+
+    <tr th:each="t : ${templates}">
+        <td th:text="${t.id}"></td>
+        <td th:text="${t.category}"></td>
+        <td th:text="${t.review}"></td>
+        <td>
+            <a th:href="@{/admin/templates/delete/{id}(id=${t.id})}">Delete</a>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>
